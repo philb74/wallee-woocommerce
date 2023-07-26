@@ -113,7 +113,7 @@ class WC_Wallee_Service_Line_Item extends WC_Wallee_Service_Abstract {
 
 			$line_item = new \Wallee\Sdk\Model\LineItemCreate();
 			$line_item->setAmountIncludingTax( $this->round_amount( $amount, $currency ) );
-			$line_item->setDiscountIncludingTax( $this->round_amount( $discount, $currency ) );
+			$line_item->setDiscountIncludingTax(abs($this->round_amount( $discount, $currency )) );
 			$line_item->setName( $this->fix_length( $product->get_name(), 150 ) );
 
 			$quantity = empty( $values['quantity'] ) ? 1 : $values['quantity'];
@@ -381,7 +381,7 @@ class WC_Wallee_Service_Line_Item extends WC_Wallee_Service_Abstract {
 			}
 
 			$line_item->setAmountIncludingTax( $this->round_amount( $amount, $currency ) );
-			$line_item->setDiscountIncludingTax( $this->round_amount( $discount, $currency ) );
+			$line_item->setDiscountIncludingTax(abs($this->round_amount( $discount, $currency )) );
 			$quantity = empty( $item->get_quantity() ) ? 1 : $item->get_quantity();
 
 			$line_item->setQuantity( $quantity );
